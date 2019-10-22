@@ -9,7 +9,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -24,11 +24,37 @@ android {
 
 }
 
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
+
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'AutoSwitchLayout'
+
+    publishedGroupId = 'xyz.imxqd'
+    libraryName = 'AutoSwitchLayout'
+    artifact = 'AutoSwitchLayout'
+
+    libraryDescription = 'An android custom layout.'
+
+    siteUrl = 'https://github.com/hfutxqd/AutoSwitchLayout'
+    gitUrl = 'https://github.com/hfutxqd/AutoSwitchLayout.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'IMXQD'
+    developerName = 'IMXQD'
+    developerEmail = 'ahtlxqd@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: './installv1.gradle'
+apply from: './bintrayv1.gradle'
+

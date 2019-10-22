@@ -11,13 +11,10 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class AutoSwitchLayout extends LinearLayout implements AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener, OnItemSelectedListener {
 
-    public static final String VERSION = BuildConfig.VERSION_NAME;
+    public static final String VERSION = "1.0.0";
     private static final String TAG = "AutoSwitchLayout";
 
     AdapterView.OnItemSelectedListener listener = null;
@@ -29,18 +26,18 @@ public class AutoSwitchLayout extends LinearLayout implements AdapterView.OnItem
         init(context, null);
     }
 
-    public AutoSwitchLayout(Context context, @Nullable AttributeSet attrs) {
+    public AutoSwitchLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public AutoSwitchLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public AutoSwitchLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
 
     @SuppressLint("CustomViewStyleable")
-    private void init(Context context, @Nullable AttributeSet attrs) {
+    private void init(Context context, AttributeSet attrs) {
 
         if (attrs == null) {
             Log.d(TAG, "init with no attrs");
@@ -63,7 +60,7 @@ public class AutoSwitchLayout extends LinearLayout implements AdapterView.OnItem
 
     }
 
-    public void attachTo(@NonNull View targetView) {
+    public void attachTo(View targetView) {
         if (targetView instanceof AdapterView) {
             ((AdapterView) targetView).setOnItemSelectedListener(this);
             Log.d(TAG, "attached to AdapterView");
@@ -75,12 +72,12 @@ public class AutoSwitchLayout extends LinearLayout implements AdapterView.OnItem
         }
     }
 
-    public void attachTo(@NonNull SelectedItemObservable observable) {
+    public void attachTo(SelectedItemObservable observable) {
         observable.setOnItemSelectedListener(this);
     }
 
     @SuppressLint("CustomViewStyleable")
-    public void onItemSelected(@IdRes int id, int pos) {
+    public void onItemSelected(int id, int pos) {
         Log.d(TAG, String.format("onItemSelected:%d %d", id, pos));
         int count = getChildCount();
         for (int i = 0;i < count; i++) {
