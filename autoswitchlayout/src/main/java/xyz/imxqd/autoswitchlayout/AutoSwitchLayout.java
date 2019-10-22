@@ -8,13 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
 
-public class AutoSwitchLayout extends LinearLayout implements AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener, OnItemSelectedListener {
+public class AutoSwitchLayout extends LinearLayout implements AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener, OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
 
-    public static final String VERSION = "1.0.0";
+    public static final String VERSION = "1.0.1";
     private static final String TAG = "AutoSwitchLayout";
 
     AdapterView.OnItemSelectedListener listener = null;
@@ -60,13 +61,40 @@ public class AutoSwitchLayout extends LinearLayout implements AdapterView.OnItem
 
     }
 
+    @Override
+    public void addView(View child, int index, ViewGroup.LayoutParams params) {
+        if (child != null) {
+            child.setVisibility(GONE);
+        }
+        super.addView(child, index, params);
+    }
+
+    private void hideChildren() {
+        int count = getChildCount();
+        for (int i = 0;i < count; i++) {
+            View view = getChildAt(i);
+            view.setVisibility(GONE);
+        }
+    }
+
     public void attachTo(View targetView) {
         if (targetView instanceof AdapterView) {
+            hideChildren();
             ((AdapterView) targetView).setOnItemSelectedListener(this);
+            onItemSelected((AdapterView<?>) targetView, ((AdapterView) targetView).getSelectedView(),
+                    ((AdapterView) targetView).getSelectedItemPosition(), ((AdapterView) targetView).getSelectedItemId());
             Log.d(TAG, "attached to AdapterView");
         } else if (targetView instanceof RadioGroup) {
+            hideChildren();
             ((RadioGroup) targetView).setOnCheckedChangeListener(this);
+            onCheckedChanged((RadioGroup) targetView, ((RadioGroup) targetView).getCheckedRadioButtonId());
             Log.d(TAG, "attached to RadioGroup");
+        } else if (targetView instanceof CompoundButton) {
+            hideChildren();
+            ((CompoundButton) targetView).setOnCheckedChangeListener(this);
+            onCheckedChanged((CompoundButton) targetView, ((CompoundButton) targetView).isChecked());
+
+            Log.d(TAG, "attached to CompoundButton");
         } else {
             throw new RuntimeException("Can not attach to " + targetView.getClass().getName() + "!");
         }
@@ -74,6 +102,7 @@ public class AutoSwitchLayout extends LinearLayout implements AdapterView.OnItem
 
     public void attachTo(SelectedItemObservable observable) {
         observable.setOnItemSelectedListener(this);
+        onItemSelected(observable.getSelectedId(), observable.getSelectedPosition());
     }
 
     @SuppressLint("CustomViewStyleable")
@@ -126,7 +155,11 @@ public class AutoSwitchLayout extends LinearLayout implements AdapterView.OnItem
         if (this.listener != null) {
             this.listener.onItemSelected(parent, view, position, id);
         }
-        onItemSelected(view.getId(), position);
+        if (view != null) {
+            onItemSelected(view.getId(), position);
+        } else {
+            onNothingSelected();
+        }
     }
 
     @Override
@@ -143,7 +176,18 @@ public class AutoSwitchLayout extends LinearLayout implements AdapterView.OnItem
         onItemSelected(checkedId, group.indexOfChild(v));
     }
 
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+            onItemSelected(R.id.autoswitch_checked, -2);
+        } else {
+            onItemSelected(R.id.autoswitch_unchecked, -2);
+        }
+    }
+
     public interface SelectedItemObservable {
+        int getSelectedId();
+        int getSelectedPosition();
         void setOnItemSelectedListener(OnItemSelectedListener listener);
     }
 

@@ -22,32 +22,33 @@
         <TextView
             app:layout_show_on_position_selected="-1"
             android:text="Selected None"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             app:layout_show_on_position_selected="0"
             android:text="Selected 0"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             app:layout_show_on_position_selected="1"
             android:text="Selected 1"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             app:layout_show_on_position_selected="2"
             android:text="Selected 2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             app:layout_show_on_position_selected="3"
             android:text="Selected 3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </xyz.imxqd.autoswitchlayout.AutoSwitchLayout>
 
     <RadioGroup
         android:id="@+id/test2"
+        android:checkedButton="@id/test_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RadioButton
@@ -68,11 +69,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            app:layout_show_on_id_selected="@id/autoswitch_selected_none"
-            android:text="Selected None"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
             app:layout_show_on_id_selected="@id/test_1"
             android:text="Selected test_1"
             android:layout_width="match_parent"
@@ -84,4 +80,43 @@
             android:layout_height="wrap_content" />
     </xyz.imxqd.autoswitchlayout.AutoSwitchLayout>
 
+    <Switch
+        android:id="@+id/test_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <xyz.imxqd.autoswitchlayout.AutoSwitchLayout
+        app:attach_view="@id/test_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="switch on"
+            app:layout_show_on_id_selected="@id/autoswitch_checked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="switch off"
+            app:layout_show_on_id_selected="@id/autoswitch_unchecked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </xyz.imxqd.autoswitchlayout.AutoSwitchLayout>
+
+    <CheckBox
+        android:id="@+id/test_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <xyz.imxqd.autoswitchlayout.AutoSwitchLayout
+        app:attach_view="@id/test_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="checkbox on"
+            app:layout_show_on_id_selected="@id/autoswitch_checked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="checkbox off"
+            app:layout_show_on_id_selected="@id/autoswitch_unchecked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </xyz.imxqd.autoswitchlayout.AutoSwitchLayout>
 </LinearLayout>
