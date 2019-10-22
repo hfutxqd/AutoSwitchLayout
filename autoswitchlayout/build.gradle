@@ -37,7 +37,7 @@ ext {
 
     publishedGroupId = 'xyz.imxqd'
     libraryName = 'AutoSwitchLayout'
-    artifact = 'AutoSwitchLayout'
+    artifact = 'autoswitchlayout'
 
     libraryDescription = 'An android custom layout.'
 
