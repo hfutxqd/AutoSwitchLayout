@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="layout_show_on_position_selected" format="integer" />
+    <attr name="layout_show_on_id_selected" format="reference" />
+
+    <declare-styleable name="AutoSwitchLayout" >
+        <attr name="attach_view" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="AutoSwitchLayout_Layout" >
+        <attr name="layout_show_on_position_selected" />
+        <attr name="layout_show_on_id_selected" />
+    </declare-styleable>
+</resources>

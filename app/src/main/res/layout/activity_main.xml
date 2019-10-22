@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Spinner
+        android:id="@+id/test_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/test"/>
+
+    <xyz.imxqd.autoswitchlayout.AutoSwitchLayout
+        app:attach_view="@id/test_view"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            app:layout_show_on_position_selected="-1"
+            android:text="Selected None"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            app:layout_show_on_position_selected="0"
+            android:text="Selected 0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            app:layout_show_on_position_selected="1"
+            android:text="Selected 1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            app:layout_show_on_position_selected="2"
+            android:text="Selected 2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            app:layout_show_on_position_selected="3"
+            android:text="Selected 3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </xyz.imxqd.autoswitchlayout.AutoSwitchLayout>
+
+    <RadioGroup
+        android:id="@+id/test2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:text="test_1"
+            android:id="@+id/test_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:text="test_2"
+            android:id="@+id/test_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+
+    <xyz.imxqd.autoswitchlayout.AutoSwitchLayout
+        app:attach_view="@id/test2"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            app:layout_show_on_id_selected="@id/autoswitch_selected_none"
+            android:text="Selected None"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            app:layout_show_on_id_selected="@id/test_1"
+            android:text="Selected test_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            app:layout_show_on_id_selected="@id/test_2"
+            android:text="Selected test_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </xyz.imxqd.autoswitchlayout.AutoSwitchLayout>
+
+</LinearLayout>
