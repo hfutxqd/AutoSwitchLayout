@@ -1,16 +1,15 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -27,7 +26,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 
-apply plugin: 'com.android.library'
 
 ext {
     bintrayRepo = 'maven'
@@ -37,7 +35,7 @@ ext {
     libraryName = 'AutoSwitchLayout'
     artifact = 'autoswitchlayout'
 
-    libraryDescription = 'An android custom layout.'
+    libraryDescription = 'According to the selected state of the specified view, automatically update the display or hide of other views without writing Java or kotlin code.'
 
     siteUrl = 'https://github.com/hfutxqd/AutoSwitchLayout'
     gitUrl = 'https://github.com/hfutxqd/AutoSwitchLayout.git'
@@ -53,6 +51,5 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
-apply from: './installv1.gradle'
 apply from: './bintrayv1.gradle'
 
