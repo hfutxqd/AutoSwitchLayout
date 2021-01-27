@@ -90,7 +90,7 @@ public class AutoSwitchLayout extends LinearLayout implements AdapterView.OnItem
                 Field mOnItemSelectedListenerField = AdapterView.class.getDeclaredField("mOnItemSelectedListener");
                 mOnItemSelectedListenerField.setAccessible(true);
                 this.mItemSelectedListener = (AdapterView.OnItemSelectedListener) mOnItemSelectedListenerField.get(targetView);
-                ((RadioGroup) targetView).setOnCheckedChangeListener(this);
+                ((AdapterView) targetView).setOnItemSelectedListener(this);
             } catch (Exception e) {
                 e.printStackTrace();
             }
